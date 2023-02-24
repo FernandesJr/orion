@@ -1,25 +1,45 @@
 package br.com.gilfercode.orion.entities;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
+@Table(name = "tb_user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
     private String verificationCode;
     private boolean active;
-    private Role role;
+
+    @ManyToMany(fetch = FetchType.EAGER) //Get Role automatic when get use at the date base
+    @JoinTable(
+            name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Clinic> clinics = new HashSet<>();
 
     public User(){}
 
-    public User(Long id, String email, String password, String verificationCode, boolean active, Role role) {
+    public User(Long id, String email, String password, String verificationCode, boolean active) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.verificationCode = verificationCode;
         this.active = active;
-        this.role = role;
     }
 
     /*Gets and Sets*/
@@ -61,14 +81,6 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     /*Equals*/

@@ -1,13 +1,34 @@
 package br.com.gilfercode.orion.entities;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
+import java.util.*;
+
+@Entity
+@Table(name = "tb_clinic")
 public class Clinic {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @Column(unique = true)
     private String cnpj;
+
     private String imageUrl;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_clinic_user",
+            joinColumns = @JoinColumn(name = "id_clinic"),
+            inverseJoinColumns = @JoinColumn(name = "id_user")
+    )
+    private Set<User> users = new HashSet<>();
+
+    @OneToMany(mappedBy = "clinic")
+    private List<Patient> patients = new ArrayList<>();
 
     public Clinic(){}
 

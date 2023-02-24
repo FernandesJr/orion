@@ -1,7 +1,7 @@
 package br.com.gilfercode.orion.entities;
 
 public enum TypesRole {
-    ADMIN(0, "ADMIN"), DOCTOR(1, "DOCTOR"), PATIENT(2, "PATIENT");
+    ADMIN(1, "ADMIN"), DOCTOR(2, "DOCTOR");
 
     private long cod;
     private String desc;

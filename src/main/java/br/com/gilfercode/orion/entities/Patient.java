@@ -1,19 +1,32 @@
 package br.com.gilfercode.orion.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_patient")
 public class Patient {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String cpf;
     private LocalDate dateBirth;
     private String phone;
+
+    @Transient
     private Address address;
+    @Transient //Hibernate ignora este atributo
     private List<Appointment> appointments = new ArrayList<>();
+
+    @ManyToOne
+    private Clinic clinic;
 
     public Patient(){}
 
@@ -77,6 +90,14 @@ public class Patient {
 
     public List<Appointment> getAppointments() {
         return appointments;
+    }
+
+    public Clinic getClinic() {
+        return clinic;
+    }
+
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
     }
 
     /*Equals*/
