@@ -17,16 +17,19 @@ public class Address {
     private String state;
     private String complement;
     private Integer number;
+    private String cep;
 
     public Address(){}
 
-    public Address(Long id, String street, String district, String city, String state, Integer number) {
+    public Address(
+            Long id, String street, String district, String city, String state, Integer number, String cep) {
         this.id = id;
         this.street = street;
         this.district = district;
         this.city = city;
         this.state = state;
         this.number = number;
+        this.cep = cep;
     }
 
     /*Gets and Sets*/
@@ -79,6 +82,10 @@ public class Address {
     public String getComplement() {return complement;}
 
     public void setComplement(String complement) {this.complement = complement;}
+
+    public String getCep() {return cep;}
+
+    public void setCep(String cep) {this.cep = cep;}
 
     /*Equals*/
     @Override

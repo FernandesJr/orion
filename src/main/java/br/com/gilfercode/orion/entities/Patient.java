@@ -29,6 +29,9 @@ public class Patient {
     @ManyToOne
     private Clinic clinic;
 
+    @ManyToOne
+    private Address address;
+
     public Patient(){}
 
     public Patient(Long id, String name, String cpf, LocalDate dateBirth, String phone) {
