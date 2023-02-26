@@ -30,13 +30,17 @@ public class Clinic {
     @OneToMany(mappedBy = "clinic")
     private List<Patient> patients = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
     public Clinic(){}
 
-    public Clinic(Long id, String name, String cnpj, String imageUrl) {
+    public Clinic(Long id, String name, String cnpj, String imageUrl, Address address) {
         this.id = id;
         this.name = name;
         this.cnpj = cnpj;
         this.imageUrl = imageUrl;
+        this.address = address;
     }
 
     /*Gets and Sets*/
@@ -70,6 +74,14 @@ public class Clinic {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     /*Equals*/

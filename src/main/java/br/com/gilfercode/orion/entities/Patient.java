@@ -1,6 +1,4 @@
 package br.com.gilfercode.orion.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -15,13 +13,16 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @Column(unique = true)
     private String cpf;
+
     private LocalDate dateBirth;
+
     private String phone;
 
-    @Transient
-    private Address address;
     @Transient //Hibernate ignora este atributo
     private List<Appointment> appointments = new ArrayList<>();
 
@@ -30,13 +31,12 @@ public class Patient {
 
     public Patient(){}
 
-    public Patient(Long id, String name, String cpf, LocalDate dateBirth, String phone, Address address) {
+    public Patient(Long id, String name, String cpf, LocalDate dateBirth, String phone) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.dateBirth = dateBirth;
         this.phone = phone;
-        this.address = address;
     }
 
     /*Gets and Sets*/
@@ -78,14 +78,6 @@ public class Patient {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public List<Appointment> getAppointments() {

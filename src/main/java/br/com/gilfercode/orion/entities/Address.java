@@ -1,14 +1,21 @@
 package br.com.gilfercode.orion.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_address")
 public class Address {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String street;
     private String district;
     private String city;
     private String state;
+    private String complement;
     private Integer number;
 
     public Address(){}
@@ -63,13 +70,15 @@ public class Address {
         this.state = state;
     }
 
-    public Integer getNumber() {
-        return number;
-    }
+    public Integer getNumber() {return number;}
 
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+    public String getComplement() {return complement;}
+
+    public void setComplement(String complement) {this.complement = complement;}
 
     /*Equals*/
     @Override
