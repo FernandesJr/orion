@@ -1,12 +1,26 @@
 package br.com.gilfercode.orion.entities;
 
+import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_appointment")
 public class Appointment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Doctor doctor;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Patient patient;
+
     private String anamnese;
     private Instant date;
     private String status;
@@ -61,6 +75,10 @@ public class Appointment {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public Patient getPatient() {return patient;}
+
+    public void setPatient(Patient patient) {this.patient = patient;}
 
     /*Equals*/
     @Override

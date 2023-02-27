@@ -23,7 +23,7 @@ public class Patient {
 
     private String phone;
 
-    @Transient //Hibernate ignora este atributo
+    @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments = new ArrayList<>();
 
     @ManyToOne

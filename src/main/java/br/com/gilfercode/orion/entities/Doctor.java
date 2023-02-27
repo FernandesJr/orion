@@ -26,7 +26,7 @@ public class Doctor {
     )
     private Set<Specialty> specialties = new HashSet<>();
 
-    @Transient //Ignorar o objeto no mapeamento
+    @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointments = new ArrayList<>();
 
     @OneToOne
