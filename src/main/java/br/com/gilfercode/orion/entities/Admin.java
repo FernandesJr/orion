@@ -1,11 +1,22 @@
 package br.com.gilfercode.orion.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_admin")
 public class Admin {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @OneToOne
+    private User user;
 
     public Admin(){}
 

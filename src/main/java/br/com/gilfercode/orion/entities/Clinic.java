@@ -22,8 +22,8 @@ public class Clinic {
     @ManyToMany
     @JoinTable(
             name = "tb_clinic_user",
-            joinColumns = @JoinColumn(name = "id_clinic"),
-            inverseJoinColumns = @JoinColumn(name = "id_user")
+            joinColumns = @JoinColumn(name = "clinic_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> users = new HashSet<>();
 

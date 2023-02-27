@@ -15,9 +15,21 @@ INSERT INTO TB_USER_ROLE (user_id, role_id) VALUES (1, 1);
 INSERT INTO TB_USER_ROLE (user_id, role_id) VALUES (2, 1);
 INSERT INTO TB_USER_ROLE (user_id, role_id) VALUES (2, 2);
 
-INSERT INTO TB_CLINIC_USER(id_clinic, id_user) VALUES (1, 1);
-INSERT INTO TB_CLINIC_USER(id_clinic, id_user) VALUES (1, 2);
+INSERT INTO TB_CLINIC_USER(clinic_id, user_id) VALUES (1, 1);
+INSERT INTO TB_CLINIC_USER(clinic_id, user_id) VALUES (1, 2);
 
-INSERT INTO TB_PATIENT(cpf, name, date_birth, phone, clinic_id, address_id) VALUES ('109.854.034-46', 'gilberto fernandes', '1993-01-13', '81992213546', 1, 2);
-INSERT INTO TB_PATIENT(cpf, name, date_birth, phone, clinic_id, address_id) VALUES ('123.456.789-11', 'joão da silva', '1994-04-08', '81999545874', 1, 3);
-INSERT INTO TB_PATIENT(cpf, name, date_birth, phone, clinic_id, address_id) VALUES ('111.222.333-44', 'maria das dores', '1976-04-12', '81978542584', 1, 3);
+INSERT INTO TB_PATIENT (cpf, name, date_birth, phone, clinic_id, address_id) VALUES ('109.854.034-46', 'gilberto fernandes', '1993-01-13', '81992213546', 1, 2);
+INSERT INTO TB_PATIENT (cpf, name, date_birth, phone, clinic_id, address_id) VALUES ('123.456.789-11', 'joão da silva', '1994-04-08', '81999545874', 1, 3);
+INSERT INTO TB_PATIENT (cpf, name, date_birth, phone, clinic_id, address_id) VALUES ('111.222.333-44', 'maria das dores', '1976-04-12', '81978542584', 1, 3);
+
+INSERT INTO TB_SPECIALTY (title, description) VALUES ('citologista', null);
+INSERT INTO TB_SPECIALTY (title, description) VALUES ('clínica geral', null);
+INSERT INTO TB_SPECIALTY (title, description) VALUES ('nutrição', null);
+INSERT INTO TB_SPECIALTY (title, description) VALUES ('psicologia', null);
+INSERT INTO TB_SPECIALTY (title, description) VALUES ('ginecologia', null);
+
+INSERT INTO TB_DOCTOR (name, council_number, user_id) VALUES ('geovanna samara', '13514', 2);
+
+INSERT INTO TB_DOCTOR_SPECIALTY (doctor_id, specialty_id) VALUES (1, 1);
+
+INSERT INTO TB_ADMIN (name, user_id) VALUES ('gilberto fernandes', 1);

@@ -1,14 +1,36 @@
 package br.com.gilfercode.orion.entities;
 
+import jakarta.persistence.*;
+
 import java.util.*;
 
+@Entity
+@Table(name = "tb_doctor")
 public class Doctor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private Long councilNumber;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "tb_doctor_specialty",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "specialty_id")
+    )
     private Set<Specialty> specialties = new HashSet<>();
+
+    @Transient //Ignorar o objeto no mapeamento
     private List<Appointment> appointments = new ArrayList<>();
+
+    @OneToOne
+    private User user;
 
     public Doctor() {}
 
