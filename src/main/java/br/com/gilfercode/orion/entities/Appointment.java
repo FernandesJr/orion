@@ -22,6 +22,7 @@ public class Appointment {
     private Patient patient;
 
     private String anamnese;
+    private String complaintMain;
     private Instant date;
     private String status;
 
@@ -79,6 +80,10 @@ public class Appointment {
     public Patient getPatient() {return patient;}
 
     public void setPatient(Patient patient) {this.patient = patient;}
+
+    public String getComplaintMain() {return complaintMain;}
+
+    public void setComplaintMain(String complaintMain) {this.complaintMain = complaintMain;}
 
     /*Equals*/
     @Override

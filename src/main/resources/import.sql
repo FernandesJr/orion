@@ -34,4 +34,4 @@ INSERT INTO TB_DOCTOR_SPECIALTY (doctor_id, specialty_id) VALUES (1, 1);
 
 INSERT INTO TB_ADMIN (name, user_id) VALUES ('gilberto fernandes', 1);
 
-INSERT INTO TB_APPOINTMENT (doctor_id, patient_id, date, status, anamnese) VALUES (1, 3, TIMESTAMP WITH TIME ZONE '2023-02-27T15:50:07Z', 'appointment', 'O paciente tem isso e aquilo');
+INSERT INTO TB_APPOINTMENT (doctor_id, patient_id, date, status, complaint_main ,anamnese) VALUES (1, 3, TIMESTAMP WITH TIME ZONE '2023-02-27T15:50:07Z', 'appointment', 'Dores em tal parte do corpo','O paciente tem isso e aquilo');
