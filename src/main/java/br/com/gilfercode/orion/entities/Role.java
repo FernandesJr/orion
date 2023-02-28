@@ -22,11 +22,11 @@ public class Role {
 
     public void setId(Long id) {this.id = id;}
 
-    public String getDescription() {
+    public String getAuthority() {
         return authority;
     }
 
-    public void setDescription(String authority) {
+    public void setAuthority(String authority) {
         this.authority = authority;
     }
 }

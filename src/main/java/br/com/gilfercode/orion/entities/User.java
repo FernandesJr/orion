@@ -1,5 +1,6 @@
 package br.com.gilfercode.orion.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -29,7 +30,8 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(mappedBy = "users")
+    //@JsonIgnore
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Clinic> clinics = new HashSet<>();
 
     public User(){}
@@ -81,6 +83,18 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Set<Clinic> getClinics() {
+        return clinics;
+    }
+
+    public void setClinics(Set<Clinic> clinics) {
+        this.clinics = clinics;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
     }
 
     /*Equals*/
