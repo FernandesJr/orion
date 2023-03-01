@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class UserInsertDTO implements Serializable {
 
 
+    @NotBlank(message = "Campo requerido")
     private String email;
 
     @NotBlank(message = "Campo requerido")

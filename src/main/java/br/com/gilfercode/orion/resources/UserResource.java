@@ -3,6 +3,7 @@ package br.com.gilfercode.orion.resources;
 import br.com.gilfercode.orion.dto.UserDTO;
 import br.com.gilfercode.orion.dto.UserInsertDTO;
 import br.com.gilfercode.orion.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +32,7 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO dto){
+    public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO dto){
         UserDTO userDTO = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(userDTO.getId()).toUri();

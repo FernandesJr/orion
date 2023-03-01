@@ -40,7 +40,6 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
         }
 
         //Caso tenha algum item na lista o ExceptionHandler captura
-
         return error.isEmpty();
     }
 }
