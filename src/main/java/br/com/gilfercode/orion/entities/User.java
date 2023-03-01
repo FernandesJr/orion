@@ -1,6 +1,5 @@
 package br.com.gilfercode.orion.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -30,8 +29,12 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    //@JsonIgnore
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "tb_clinic_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "clinic_id")
+    )
     private Set<Clinic> clinics = new HashSet<>();
 
     public User(){}
@@ -42,6 +45,10 @@ public class User {
         this.password = password;
         this.verificationCode = verificationCode;
         this.active = active;
+    }
+
+    public void addClinic(Clinic clinic){
+        this.clinics.add(clinic);
     }
 
     /*Gets and Sets*/

@@ -19,12 +19,8 @@ public class Clinic {
 
     private String imageUrl;
 
-    @ManyToMany
-    @JoinTable(
-            name = "tb_clinic_user",
-            joinColumns = @JoinColumn(name = "clinic_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+
+    @ManyToMany(mappedBy = "clinics", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "clinic")
@@ -34,6 +30,10 @@ public class Clinic {
     private Address address;
 
     public Clinic(){}
+
+    public Clinic(Long id){
+        this.id = id;
+    }
 
     public Clinic(Long id, String name, String cnpj, String imageUrl, Address address) {
         this.id = id;
