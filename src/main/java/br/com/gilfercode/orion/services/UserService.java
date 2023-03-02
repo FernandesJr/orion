@@ -45,4 +45,9 @@ public class UserService {
         User userDB = repository.save(user);
         return new UserDTO(userDB);
     }
+
+    public UserDTO update(){
+
+        return new UserDTO();
+    }
 }
