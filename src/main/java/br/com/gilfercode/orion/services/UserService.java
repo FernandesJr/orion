@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
+    private static final Object PASSWORD_NOT_CHANGED = null;
+
     @Autowired
     private UserRepository repository;
 
@@ -52,7 +54,7 @@ public class UserService {
         User user = repository.findById(userId).get();
         user.setEmail(dto.getEmail());
         user.setActive(dto.isActive());
-        if(dto.getPassword() != null && !dto.getPassword().equals(""))
+        if(dto.getPassword() != PASSWORD_NOT_CHANGED)
             user.setPassword(dto.getPassword());
         repository.save(user);
         return new UserDTO(user);

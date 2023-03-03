@@ -17,6 +17,8 @@ import java.util.Map;
 
 public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid, UserUpdateDTO> {
 
+    private static final Object EMAIL_NOT_FOUND = null;
+
     @Autowired
     private UserRepository userRepository;
 
@@ -36,8 +38,6 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid,
 
         List<FieldMessage> error = new ArrayList<>();
 
-        System.out.println(dto.toString());
-
         User user = userRepository.findById(idUser).orElseThrow(
                 () -> new ResourceNotFoundException("Entity not found"));
 
@@ -45,7 +45,9 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid,
 
         // Coloque aqui seus testes de validação, acrescentando objetos FieldMessage à lista
 
-        if (dto.getEmail() != user.getEmail() && userByEmail != null && userByEmail.getId() != idUser){
+        if (dto.getEmail() != user.getEmail() &&
+                userByEmail != EMAIL_NOT_FOUND &&
+                userByEmail.getId() != idUser){
             error.add(new FieldMessage("email", "Email já cadastrado"));
         }
 
