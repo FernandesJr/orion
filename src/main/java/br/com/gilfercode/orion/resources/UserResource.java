@@ -2,6 +2,7 @@ package br.com.gilfercode.orion.resources;
 
 import br.com.gilfercode.orion.dto.UserDTO;
 import br.com.gilfercode.orion.dto.UserInsertDTO;
+import br.com.gilfercode.orion.dto.UserUpdateDTO;
 import br.com.gilfercode.orion.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,11 @@ public class UserResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(userDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(userDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> update(@Valid @RequestBody UserUpdateDTO dto, @PathVariable Long id){
+        UserDTO userDTO = service.update(dto, id);
+        return ResponseEntity.ok(userDTO);
     }
 }

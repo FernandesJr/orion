@@ -1,6 +1,7 @@
 package br.com.gilfercode.orion.dto;
 
 import br.com.gilfercode.orion.services.validation.UserInsertValid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,6 +12,7 @@ public class UserInsertDTO implements Serializable {
 
 
     @NotBlank(message = "Campo requerido")
+    @Email(message = "Informe um e-mail válido")
     private String email;
 
     @NotBlank(message = "Campo requerido")

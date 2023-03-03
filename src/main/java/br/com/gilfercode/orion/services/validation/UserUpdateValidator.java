@@ -1,10 +1,10 @@
 package br.com.gilfercode.orion.services.validation;
 
-import br.com.gilfercode.orion.dto.UserInsertDTO;
 import br.com.gilfercode.orion.dto.UserUpdateDTO;
 import br.com.gilfercode.orion.entities.User;
 import br.com.gilfercode.orion.repositories.UserRepository;
 import br.com.gilfercode.orion.resources.exceptions.FieldMessage;
+import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -29,22 +29,28 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid,
     }
 
     @Override
-    public boolean isValid(UserUpdateDTO userUpdateDTO, ConstraintValidatorContext context) {
+    public boolean isValid(UserUpdateDTO dto, ConstraintValidatorContext context) {
 
         var uriVars = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         long idUser = Long.parseLong(uriVars.get("id"));
 
         List<FieldMessage> error = new ArrayList<>();
 
-        User user = userRepository.findByEmail(userUpdateDTO.getEmail());
+        System.out.println(dto.toString());
+
+        User user = userRepository.findById(idUser).orElseThrow(
+                () -> new ResourceNotFoundException("Entity not found"));
+
+        User userByEmail = userRepository.findByEmail(dto.getEmail());
 
         // Coloque aqui seus testes de validação, acrescentando objetos FieldMessage à lista
-        if (user != null && user.getId() != idUser){
-            error.add(new FieldMessage("email", "email já cadastrado"));
+
+        if (dto.getEmail() != user.getEmail() && userByEmail != null && userByEmail.getId() != idUser){
+            error.add(new FieldMessage("email", "Email já cadastrado"));
         }
 
-        if (userUpdateDTO.getPassword() != userUpdateDTO.getConfirmPassword()){
-            error.add(new FieldMessage("senha", "senha e confirmação de senha não conferem"));
+        if (!dto.getPassword().equals(dto.getConfirmPassword())){
+            error.add(new FieldMessage("confirmPassword", "Senha e confirmação de senha não conferem"));
         }
 
         for (FieldMessage e : error) {

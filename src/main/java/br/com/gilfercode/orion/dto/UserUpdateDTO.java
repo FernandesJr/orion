@@ -1,30 +1,32 @@
 package br.com.gilfercode.orion.dto;
 
 import br.com.gilfercode.orion.services.validation.UserUpdateValid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 @UserUpdateValid
 public class UserUpdateDTO implements Serializable {
 
-    @NotBlank(message = "Campo requerido")
+    @NotEmpty(message = "Campo obrigatório")
+    @Email(message = "Informe um e-mail válido")
     private String email;
 
     private String password;
 
-    private String ConfirmPassword;
+    private String confirmPassword;
 
-    @NotNull(message = "Campo não pode ser nulo")
-    private Long ClinicId;
+    private boolean active;
+
+    private Long clinicId;
 
     public UserUpdateDTO() {}
 
     public UserUpdateDTO(String email, String password, Long clinicId) {
         this.email = email;
         this.password = password;
-        ClinicId = clinicId;
+        this.clinicId = clinicId;
     }
 
     public String getEmail() {
@@ -43,19 +45,38 @@ public class UserUpdateDTO implements Serializable {
         this.password = password;
     }
 
-    public Long getClinicId() {
-        return ClinicId;
-    }
-
-    public void setClinicId(Long clinicId) {
-        ClinicId = clinicId;
-    }
-
     public String getConfirmPassword() {
-        return ConfirmPassword;
+        return confirmPassword;
     }
 
     public void setConfirmPassword(String confirmPassword) {
-        ConfirmPassword = confirmPassword;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public Long getClinicId() {
+        return clinicId;
+    }
+
+    public void setClinicId(Long clinicId) {
+        this.clinicId = clinicId;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "UserUpdateDTO{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", active=" + active +
+                ", clinicId=" + clinicId +
+                '}';
     }
 }

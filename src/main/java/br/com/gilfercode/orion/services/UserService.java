@@ -2,6 +2,7 @@ package br.com.gilfercode.orion.services;
 
 import br.com.gilfercode.orion.dto.UserDTO;
 import br.com.gilfercode.orion.dto.UserInsertDTO;
+import br.com.gilfercode.orion.dto.UserUpdateDTO;
 import br.com.gilfercode.orion.entities.User;
 import br.com.gilfercode.orion.repositories.ClinicRepository;
 import br.com.gilfercode.orion.repositories.UserRepository;
@@ -46,8 +47,14 @@ public class UserService {
         return new UserDTO(userDB);
     }
 
-    public UserDTO update(){
-
-        return new UserDTO();
+    @Transactional
+    public UserDTO update(UserUpdateDTO dto, Long userId){
+        User user = repository.findById(userId).get();
+        user.setEmail(dto.getEmail());
+        user.setActive(dto.isActive());
+        if(dto.getPassword() != null && !dto.getPassword().equals(""))
+            user.setPassword(dto.getPassword());
+        repository.save(user);
+        return new UserDTO(user);
     }
 }
