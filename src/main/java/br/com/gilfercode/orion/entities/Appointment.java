@@ -21,10 +21,17 @@ public class Appointment {
     @JoinColumn(nullable = false)
     private Patient patient;
 
+    @OneToOne
+    @JoinColumn
+    private Scheduling scheduling;
+
     private String anamnese;
     private String complaintMain;
     private Instant date;
     private String status;
+    private Double price;
+    private Double transferToDoctor;
+    private Double profit;
 
     public Appointment(){}
 
@@ -84,6 +91,38 @@ public class Appointment {
     public String getComplaintMain() {return complaintMain;}
 
     public void setComplaintMain(String complaintMain) {this.complaintMain = complaintMain;}
+
+    public Scheduling getScheduling() {
+        return scheduling;
+    }
+
+    public void setScheduling(Scheduling scheduling) {
+        this.scheduling = scheduling;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getTransferToDoctor() {
+        return transferToDoctor;
+    }
+
+    public void setTransferToDoctor(Double transferToDoctor) {
+        this.transferToDoctor = transferToDoctor;
+    }
+
+    public Double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(Double profit) {
+        this.profit = profit;
+    }
 
     /*Equals*/
     @Override
