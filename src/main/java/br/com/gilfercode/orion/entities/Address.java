@@ -1,5 +1,6 @@
 package br.com.gilfercode.orion.entities;
 
+import br.com.gilfercode.orion.dto.address.AddressDTO;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -30,6 +31,17 @@ public class Address {
         this.state = state;
         this.number = number;
         this.cep = cep;
+    }
+
+    public Address(AddressDTO dto) {
+        this.id = dto.getId();
+        this.street = dto.getStreet();
+        this.district = dto.getDistrict();
+        this.city = dto.getCity();
+        this.state = dto.getState();
+        this.number = dto.getNumber();
+        this.cep = dto.getCep();
+        this.complement = dto.getComplement();
     }
 
     /*Gets and Sets*/

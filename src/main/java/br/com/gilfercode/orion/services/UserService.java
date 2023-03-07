@@ -69,8 +69,7 @@ public class UserService {
         Clinic clinic = clinicRepository.getReferenceById(clinicId);
         User user = new User();
         user.getClinics().add(clinic);
-        String nameEmail = prepareNameEmail(clinic.getName());
-        user.setEmail(nameEmail + "@orin.com.br");
+        user.setEmail(clinic.getCnpj() + "@orin.com.br");
         user.setPassword(prepareKey());
         user.setActive(true);
         user.addRole(new Role(TypesRole.ADMIN));
@@ -83,7 +82,4 @@ public class UserService {
         return key;
     }
 
-    public String prepareNameEmail(String nameClinic){
-        return nameClinic.toLowerCase().replaceAll("\\s+", "");
-    }
 }

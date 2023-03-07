@@ -1,6 +1,8 @@
 package br.com.gilfercode.orion.services;
 
 import br.com.gilfercode.orion.dto.clinic.ClinicDTO;
+import br.com.gilfercode.orion.dto.clinic.ClinicInsertDTO;
+import br.com.gilfercode.orion.entities.Address;
 import br.com.gilfercode.orion.entities.Clinic;
 import br.com.gilfercode.orion.repositories.ClinicRepository;
 import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
@@ -33,12 +35,12 @@ public class ClinicService {
     }
 
     @Transactional
-    public ClinicDTO create(ClinicDTO dto){
+    public ClinicDTO create(ClinicInsertDTO dto){
         Clinic entity = new Clinic();
         entity.setCnpj(dto.getCnpj());
         entity.setName(dto.getName());
         entity.setImageUrl(dto.getImageUrl());
-        entity.setAddress(dto.getAddress());
+        entity.setAddress(new Address(dto.getAddressDto()));
         Clinic clinic = repository.save(entity);
         userService.userDefaultClinic(clinic.getId()); //User de inicialização da clínica ADM
         return new ClinicDTO(clinic);

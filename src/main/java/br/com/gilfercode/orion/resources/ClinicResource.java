@@ -1,6 +1,7 @@
 package br.com.gilfercode.orion.resources;
 
 import br.com.gilfercode.orion.dto.clinic.ClinicDTO;
+import br.com.gilfercode.orion.dto.clinic.ClinicInsertDTO;
 import br.com.gilfercode.orion.services.ClinicService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class ClinicResource {
     }
 
     @PostMapping
-    public ResponseEntity<ClinicDTO> create(@RequestBody @Valid ClinicDTO dto){
+    public ResponseEntity<ClinicDTO> create(@RequestBody @Valid ClinicInsertDTO dto){
         ClinicDTO clinicDTO = service.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("{id}").buildAndExpand(clinicDTO.getId()).toUri();
