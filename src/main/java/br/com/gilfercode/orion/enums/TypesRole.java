@@ -1,4 +1,4 @@
-package br.com.gilfercode.orion.entities;
+package br.com.gilfercode.orion.enums;
 
 public enum TypesRole {
     ADMIN(1, "ADMIN"), DOCTOR(2, "DOCTOR");

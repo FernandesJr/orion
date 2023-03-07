@@ -2,6 +2,7 @@ package br.com.gilfercode.orion.dto;
 
 import br.com.gilfercode.orion.entities.Address;
 import br.com.gilfercode.orion.entities.Clinic;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -9,9 +10,15 @@ import java.util.Objects;
 public class ClinicDTO implements Serializable {
 
     private Long id;
+
+    @NotBlank
     private String name;
+
     private String cnpj;
+
+    @NotBlank
     private String imageUrl;
+
     private Address address;
 
     public ClinicDTO(){}

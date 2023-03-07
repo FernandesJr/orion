@@ -3,15 +3,22 @@ package br.com.gilfercode.orion.services;
 import br.com.gilfercode.orion.dto.UserDTO;
 import br.com.gilfercode.orion.dto.UserInsertDTO;
 import br.com.gilfercode.orion.dto.UserUpdateDTO;
+import br.com.gilfercode.orion.entities.Clinic;
+import br.com.gilfercode.orion.entities.Role;
 import br.com.gilfercode.orion.entities.User;
+import br.com.gilfercode.orion.enums.TypesRole;
 import br.com.gilfercode.orion.repositories.ClinicRepository;
 import br.com.gilfercode.orion.repositories.UserRepository;
 import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
+import ch.qos.logback.core.testUtil.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Random;
+import java.util.UUID;
 
 
 @Service
@@ -58,5 +65,27 @@ public class UserService {
             user.setPassword(dto.getPassword());
         repository.save(user);
         return new UserDTO(user);
+    }
+
+    public void userDefaultClinic(Long clinicId){
+        Clinic clinic = clinicRepository.getReferenceById(clinicId);
+        User user = new User();
+        user.getClinics().add(clinic);
+        String nameEmail = prepareNameEmail(clinic.getName());
+        user.setEmail(nameEmail + "@orin.com.br");
+        user.setPassword(prepareKey());
+        user.setActive(true);
+        user.addRole(new Role(TypesRole.ADMIN));
+        repository.save(user);
+    }
+
+    public String prepareKey(){
+        UUID uuid = UUID.randomUUID();
+        String key = uuid.toString().replace("-", "");
+        return key;
+    }
+
+    public String prepareNameEmail(String nameClinic){
+        return nameClinic.toLowerCase().replaceAll("\\s+", "");
     }
 }

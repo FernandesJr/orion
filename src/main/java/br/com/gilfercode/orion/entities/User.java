@@ -51,6 +51,10 @@ public class User {
         this.clinics.add(clinic);
     }
 
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
+
     /*Gets and Sets*/
     public Long getId() {
         return id;
