@@ -1,6 +1,6 @@
 package br.com.gilfercode.orion.resources;
 
-import br.com.gilfercode.orion.dto.ClinicDTO;
+import br.com.gilfercode.orion.dto.clinic.ClinicDTO;
 import br.com.gilfercode.orion.services.ClinicService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

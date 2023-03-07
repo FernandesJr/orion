@@ -1,5 +1,6 @@
-package br.com.gilfercode.orion.dto;
+package br.com.gilfercode.orion.dto.user;
 
+import br.com.gilfercode.orion.dto.role.RoleDTO;
 import br.com.gilfercode.orion.entities.User;
 
 import java.io.Serializable;

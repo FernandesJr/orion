@@ -1,6 +1,6 @@
 package br.com.gilfercode.orion.services.validation;
 
-import br.com.gilfercode.orion.dto.UserUpdateDTO;
+import br.com.gilfercode.orion.dto.user.UserUpdateDTO;
 import br.com.gilfercode.orion.entities.User;
 import br.com.gilfercode.orion.repositories.UserRepository;
 import br.com.gilfercode.orion.resources.exceptions.FieldMessage;

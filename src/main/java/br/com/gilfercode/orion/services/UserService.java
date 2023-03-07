@@ -1,8 +1,8 @@
 package br.com.gilfercode.orion.services;
 
-import br.com.gilfercode.orion.dto.UserDTO;
-import br.com.gilfercode.orion.dto.UserInsertDTO;
-import br.com.gilfercode.orion.dto.UserUpdateDTO;
+import br.com.gilfercode.orion.dto.user.UserDTO;
+import br.com.gilfercode.orion.dto.user.UserInsertDTO;
+import br.com.gilfercode.orion.dto.user.UserUpdateDTO;
 import br.com.gilfercode.orion.entities.Clinic;
 import br.com.gilfercode.orion.entities.Role;
 import br.com.gilfercode.orion.entities.User;
@@ -10,14 +10,12 @@ import br.com.gilfercode.orion.enums.TypesRole;
 import br.com.gilfercode.orion.repositories.ClinicRepository;
 import br.com.gilfercode.orion.repositories.UserRepository;
 import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
-import ch.qos.logback.core.testUtil.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Random;
 import java.util.UUID;
 
 

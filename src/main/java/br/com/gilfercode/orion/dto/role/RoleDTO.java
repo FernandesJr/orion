@@ -1,4 +1,4 @@
-package br.com.gilfercode.orion.dto;
+package br.com.gilfercode.orion.dto.role;
 
 import br.com.gilfercode.orion.entities.Role;
 

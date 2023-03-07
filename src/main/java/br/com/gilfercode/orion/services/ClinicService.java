@@ -1,6 +1,6 @@
 package br.com.gilfercode.orion.services;
 
-import br.com.gilfercode.orion.dto.ClinicDTO;
+import br.com.gilfercode.orion.dto.clinic.ClinicDTO;
 import br.com.gilfercode.orion.entities.Clinic;
 import br.com.gilfercode.orion.repositories.ClinicRepository;
 import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;

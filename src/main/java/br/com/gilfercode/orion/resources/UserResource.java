@@ -1,8 +1,8 @@
 package br.com.gilfercode.orion.resources;
 
-import br.com.gilfercode.orion.dto.UserDTO;
-import br.com.gilfercode.orion.dto.UserInsertDTO;
-import br.com.gilfercode.orion.dto.UserUpdateDTO;
+import br.com.gilfercode.orion.dto.user.UserDTO;
+import br.com.gilfercode.orion.dto.user.UserInsertDTO;
+import br.com.gilfercode.orion.dto.user.UserUpdateDTO;
 import br.com.gilfercode.orion.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

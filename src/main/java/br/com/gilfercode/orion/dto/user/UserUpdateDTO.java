@@ -1,4 +1,4 @@
-package br.com.gilfercode.orion.dto;
+package br.com.gilfercode.orion.dto.user;
 
 import br.com.gilfercode.orion.services.validation.UserUpdateValid;
 import jakarta.validation.constraints.Email;
