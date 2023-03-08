@@ -1,5 +1,6 @@
 package br.com.gilfercode.orion.entities;
 
+import br.com.gilfercode.orion.dto.role.RoleDTO;
 import br.com.gilfercode.orion.enums.TypesRole;
 import jakarta.persistence.*;
 
@@ -21,6 +22,11 @@ public class Role {
 
     public Role(String authority) {
         this.authority = authority;
+    }
+
+    public Role(RoleDTO role) {
+        this.id = role.getId();
+        this.authority = role.getAuthority();
     }
 
     /*Gets and Sets*/

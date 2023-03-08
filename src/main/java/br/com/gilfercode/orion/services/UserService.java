@@ -8,6 +8,7 @@ import br.com.gilfercode.orion.entities.Role;
 import br.com.gilfercode.orion.entities.User;
 import br.com.gilfercode.orion.enums.TypesRole;
 import br.com.gilfercode.orion.repositories.ClinicRepository;
+import br.com.gilfercode.orion.repositories.RoleRepository;
 import br.com.gilfercode.orion.repositories.UserRepository;
 import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class UserService {
     @Autowired
     private ClinicRepository clinicRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Transactional(readOnly = true)
     public Page<UserDTO> findAllUser(Pageable pageable){
         Page<User> users = repository.findAll(pageable);
@@ -50,6 +54,7 @@ public class UserService {
         user.setPassword(dto.getPassword());
         user.setActive(true);
         user.getClinics().add(clinicRepository.getReferenceById(dto.getClinicId()));
+        dto.getRoles().forEach(role -> user.addRole(roleRepository.getReferenceById(role.getId())));
         User userDB = repository.save(user);
         return new UserDTO(userDB);
     }

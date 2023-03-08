@@ -49,10 +49,6 @@ public class UserDTO implements Serializable {
         return roles;
     }
 
-    public void setRoles(Set<RoleDTO> roles) {
-        this.roles = roles;
-    }
-
     public Set<Long> getClinicsId() {
         return clinicsId;
     }
