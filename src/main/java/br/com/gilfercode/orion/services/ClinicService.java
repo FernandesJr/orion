@@ -40,7 +40,8 @@ public class ClinicService {
         entity.setCnpj(dto.getCnpj());
         entity.setName(dto.getName());
         entity.setImageUrl(dto.getImageUrl());
-        entity.setAddress(new Address(dto.getAddressDto()));
+        entity.setAddress(new Address(dto.getAddress()));
+        entity.setActive(true);
         Clinic clinic = repository.save(entity);
         userService.userDefaultClinic(clinic.getId()); //User de inicialização da clínica ADM
         return new ClinicDTO(clinic);
@@ -51,6 +52,7 @@ public class ClinicService {
         Clinic entity = repository.getReferenceById(id);
         entity.setName(dto.getName());
         entity.setImageUrl(dto.getImageUrl());
+        entity.setActive(dto.isActive());
         return new ClinicDTO(entity);
     }
 }

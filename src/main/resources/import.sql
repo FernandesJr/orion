@@ -3,7 +3,7 @@ INSERT INTO TB_ADDRESS (state, city, district, street, number, complement, cep) 
 INSERT INTO TB_ADDRESS (state, city, district, street, number, complement, cep) VALUES ('pernambuco', 'belo jardim', 'são pedro', 'josé welligton santos', 19, 'casa', '55155-380');
 INSERT INTO TB_ADDRESS (state, city, district, street, number, complement, cep) VALUES ('pernambuco', 'belo jardim', 'centro', 'coronel assunção', 102, 'terreio', '55155-000');
 
-INSERT INTO TB_CLINIC (cnpj, name, address_id) VALUES ('49.387.859-0001-94', 'ceslab', 1);
+INSERT INTO TB_CLINIC (cnpj, name, address_id, active) VALUES ('49.387.859/0001-94', 'ceslab', 1, 1);
 
 INSERT INTO TB_ROLE (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO TB_ROLE (authority) VALUES ('ROLE_DOCTOR');

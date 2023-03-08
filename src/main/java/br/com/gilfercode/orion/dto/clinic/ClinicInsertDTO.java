@@ -1,7 +1,6 @@
 package br.com.gilfercode.orion.dto.clinic;
 
 import br.com.gilfercode.orion.dto.address.AddressDTO;
-import br.com.gilfercode.orion.entities.Address;
 import br.com.gilfercode.orion.services.validation.ClinicInsertValid;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -20,9 +19,11 @@ public class ClinicInsertDTO implements Serializable {
 
     private String imageUrl;
 
+    private boolean active;
+
     @Valid
     @NotNull
-    private AddressDTO addressDto;
+    private AddressDTO address;
 
     public ClinicInsertDTO(){}
 
@@ -50,11 +51,19 @@ public class ClinicInsertDTO implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public AddressDTO getAddressDto() {
-        return addressDto;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setAddressDto(AddressDTO addressDto) {
-        this.addressDto = addressDto;
+    public void setAddress(AddressDTO addressDto) {
+        this.address = addressDto;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -19,6 +19,8 @@ public class Clinic {
 
     private String imageUrl;
 
+    private boolean active;
+
 
     @ManyToMany(mappedBy = "clinics", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
@@ -82,6 +84,14 @@ public class Clinic {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /*Equals*/

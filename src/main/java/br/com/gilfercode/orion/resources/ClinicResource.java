@@ -36,7 +36,7 @@ public class ClinicResource {
     public ResponseEntity<ClinicDTO> create(@RequestBody @Valid ClinicInsertDTO dto){
         ClinicDTO clinicDTO = service.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-                .path("{id}").buildAndExpand(clinicDTO.getId()).toUri();
+                .path("/{id}").buildAndExpand(clinicDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(clinicDTO);
     }
 

@@ -1,6 +1,6 @@
 package br.com.gilfercode.orion.dto.clinic;
 
-import br.com.gilfercode.orion.entities.Address;
+import br.com.gilfercode.orion.dto.address.AddressDTO;
 import br.com.gilfercode.orion.entities.Clinic;
 import jakarta.validation.constraints.NotBlank;
 
@@ -19,16 +19,19 @@ public class ClinicDTO implements Serializable {
     @NotBlank
     private String imageUrl;
 
-    private Address address;
+    private AddressDTO address;
+
+    private boolean active;
 
     public ClinicDTO(){}
 
-    public ClinicDTO(Long id, String name, String cnpj, String imageUrl, Address address) {
+    public ClinicDTO(Long id, String name, String cnpj, String imageUrl, AddressDTO addressDTO, boolean active) {
         this.id = id;
         this.name = name;
         this.cnpj = cnpj;
         this.imageUrl = imageUrl;
-        this.address = address;
+        this.address = addressDTO;
+        this.active = active;
     }
 
     public ClinicDTO(Clinic entity) {
@@ -36,7 +39,8 @@ public class ClinicDTO implements Serializable {
         this.name = entity.getName();
         this.cnpj = entity.getCnpj();
         this.imageUrl = entity.getImageUrl();
-        this.address = entity.getAddress();
+        this.address = new AddressDTO(entity.getAddress());
+        this.active = entity.isActive();
     }
 
     public Long getId() {
@@ -71,12 +75,20 @@ public class ClinicDTO implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public Address getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(AddressDTO addressDTO) {
+        this.address = addressDTO;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
