@@ -21,4 +21,18 @@ public class AddressService {
         return new AddressDTO(entity);
     }
 
+    @Transactional
+    public AddressDTO update(Long id, AddressDTO dto){
+        Address entity = repository.getReferenceById(id);
+        entity.setState(dto.getState());
+        entity.setCity(dto.getCity());
+        entity.setDistrict(dto.getDistrict());
+        entity.setCity(dto.getCity());
+        entity.setStreet(dto.getStreet());
+        entity.setNumber(dto.getNumber());
+        entity.setComplement(dto.getComplement());
+        repository.save(entity);
+        return new AddressDTO(entity);
+    }
+
 }
