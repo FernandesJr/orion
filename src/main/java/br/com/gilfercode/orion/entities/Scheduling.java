@@ -13,7 +13,11 @@ public class Scheduling {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private LocalDateTime start;
+
+    @Column(nullable = false)
+    private LocalDateTime finish;
 
     @ManyToOne
     private Room room;
@@ -40,6 +44,22 @@ public class Scheduling {
 
     public void setStart(LocalDateTime start) {
         this.start = start;
+    }
+
+    public LocalDateTime getFinish() {
+        return finish;
+    }
+
+    public void setFinish(LocalDateTime finish) {
+        this.finish = finish;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     /*Equals*/

@@ -15,7 +15,7 @@ public class Room {
     private Long id;
 
     @Column(nullable = false)
-    private Long number;
+    private Integer number;
 
     private String name;
 
@@ -31,7 +31,7 @@ public class Room {
 
     public Room(){}
 
-    public Room(Long id, Long number, String name, Clinic clinic) {
+    public Room(Long id, Integer number, String name, Clinic clinic) {
         this.id = id;
         this.number = number;
         this.name = name;
@@ -47,11 +47,11 @@ public class Room {
         this.id = id;
     }
 
-    public Long getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -69,6 +69,26 @@ public class Room {
 
     public void setClinic(Clinic clinic) {
         this.clinic = clinic;
+    }
+
+    public LocalTime getStartAppointments() {
+        return startAppointments;
+    }
+
+    public void setStartAppointments(LocalTime startAppointments) {
+        this.startAppointments = startAppointments;
+    }
+
+    public LocalTime getFinishAppointments() {
+        return finishAppointments;
+    }
+
+    public void setFinishAppointments(LocalTime finishAppointments) {
+        this.finishAppointments = finishAppointments;
+    }
+
+    public List<Scheduling> getSchedulings() {
+        return schedulings;
     }
 
     /*Equals*/

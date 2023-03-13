@@ -5,6 +5,9 @@ INSERT INTO TB_ADDRESS (state, city, district, street, number, complement, cep) 
 
 INSERT INTO TB_CLINIC (cnpj, name, address_id, active) VALUES ('49.387.859/0001-94', 'ceslab', 1, 1);
 
+INSERT INTO TB_ROOM (clinic_id, number, start_appointments, finish_appointments) VALUES (1, 1, '06:00:00', '17:00:00');
+INSERT INTO TB_ROOM (clinic_id, number, start_appointments, finish_appointments) VALUES (1, 2, '06:00:00', '17:00:00');
+
 INSERT INTO TB_ROLE (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO TB_ROLE (authority) VALUES ('ROLE_DOCTOR');
 
@@ -34,4 +37,6 @@ INSERT INTO TB_DOCTOR_SPECIALTY (doctor_id, specialty_id) VALUES (1, 1);
 
 INSERT INTO TB_ADMIN (name, user_id) VALUES ('gilberto fernandes', 1);
 
-INSERT INTO TB_APPOINTMENT (doctor_id, patient_id, date, status, complaint_main ,anamnese) VALUES (1, 3, TIMESTAMP WITH TIME ZONE '2023-02-27T15:50:07Z', 'appointment', 'Dores em tal parte do corpo','O paciente tem isso e aquilo');
+INSERT INTO TB_SCHEDULING (start, finish, room_id) VALUES ('2023-03-13T07:30:00', '2023-03-13T08:30:00', 1);
+
+INSERT INTO TB_APPOINTMENT (doctor_id, patient_id, date, status, complaint_main ,anamnese, scheduling_id) VALUES (1, 3, TIMESTAMP WITH TIME ZONE '2023-02-27T15:50:07Z', 'appointment', 'Dores em tal parte do corpo','O paciente tem isso e aquilo', 1);
