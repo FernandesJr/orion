@@ -25,4 +25,16 @@ public class RoomService {
         rooms.forEach(r -> dto.add(new RoomDTO(r)));
         return dto;
     }
+
+    @Transactional
+    public RoomDTO create(RoomDTO dto){
+        Room room = new Room();
+        room.setClinic(new Clinic(dto.getClinicId()));
+        room.setName(dto.getName());
+        room.setNumber(dto.getNumber());
+        room.setStartAppointments(dto.getStartAppointments());
+        room.setFinishAppointments(dto.getFinishAppointments());
+        Room entity = repository.save(room);
+        return new RoomDTO(entity);
+    }
 }

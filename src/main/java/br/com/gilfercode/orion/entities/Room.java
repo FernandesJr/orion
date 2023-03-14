@@ -3,6 +3,7 @@ package br.com.gilfercode.orion.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class Room {
     private LocalTime finishAppointments;
 
     @OneToMany
-    private List<Scheduling> schedulings;
+    private List<Scheduling> scheduling = new ArrayList<>();
 
     @ManyToOne
     private Clinic clinic;
@@ -87,8 +88,8 @@ public class Room {
         this.finishAppointments = finishAppointments;
     }
 
-    public List<Scheduling> getSchedulings() {
-        return schedulings;
+    public List<Scheduling> getScheduling() {
+        return scheduling;
     }
 
     /*Equals*/

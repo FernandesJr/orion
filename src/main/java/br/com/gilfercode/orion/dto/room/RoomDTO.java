@@ -2,6 +2,7 @@ package br.com.gilfercode.orion.dto.room;
 
 import br.com.gilfercode.orion.dto.scheduling.SchedulingDTO;
 import br.com.gilfercode.orion.entities.Room;
+import br.com.gilfercode.orion.services.validation.RoomInsertValid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.List;
 
+@RoomInsertValid
 public class RoomDTO implements Serializable {
 
     private Long id;
@@ -47,7 +49,7 @@ public class RoomDTO implements Serializable {
         this.startAppointments = entity.getStartAppointments();
         this.finishAppointments = entity.getFinishAppointments();
         this.clinicId = entity.getClinic().getId();
-        entity.getSchedulings().forEach(e -> addScheduling(new SchedulingDTO(e)));
+        entity.getScheduling().forEach(e -> addScheduling(new SchedulingDTO(e)));
     }
 
     public void addScheduling(SchedulingDTO schedulingDTO){
