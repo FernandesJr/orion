@@ -1,5 +1,6 @@
 package br.com.gilfercode.orion.resources.exceptions;
 
+import br.com.gilfercode.orion.services.exceptions.BadRequestException;
 import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,18 @@ public class ResourceExceptionHandler {
         }
 
         return ResponseEntity.status(status).body(error);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<StanderError> entityNotFound(BadRequestException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StanderError standerError = new StanderError();
+        standerError.setStatus(status.value());
+        standerError.setTimestamp(Instant.now());
+        standerError.setError("Bad Request");
+        standerError.setMessage(e.getMessage());
+        standerError.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(standerError);
     }
 }
