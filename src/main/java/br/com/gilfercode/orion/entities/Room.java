@@ -24,6 +24,8 @@ public class Room {
 
     private LocalTime finishAppointments;
 
+    private boolean active;
+
     @OneToMany
     private List<Scheduling> scheduling = new ArrayList<>();
 
@@ -90,6 +92,14 @@ public class Room {
 
     public List<Scheduling> getScheduling() {
         return scheduling;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /*Equals*/

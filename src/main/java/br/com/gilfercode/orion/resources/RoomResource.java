@@ -19,6 +19,12 @@ public class RoomResource {
     private RoomService service;
 
     @GetMapping("/clinic/{clinicId}")
+    public ResponseEntity<List<RoomDTO>> findAllActiveByClinic(@PathVariable Long clinicId){
+        List<RoomDTO> rooms = service.findAllActiveByClinic(clinicId);
+        return ResponseEntity.ok(rooms);
+    }
+
+    @GetMapping("/all/clinic/{clinicId}")
     public ResponseEntity<List<RoomDTO>> findAllByClinic(@PathVariable Long clinicId){
         List<RoomDTO> rooms = service.findAllByClinic(clinicId);
         return ResponseEntity.ok(rooms);
@@ -36,5 +42,11 @@ public class RoomResource {
     public ResponseEntity<RoomDTO> update(@RequestBody @Valid RoomDTO dto){
         RoomDTO roomDTO = service.update(dto);
         return ResponseEntity.ok(roomDTO);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> inactivated(@PathVariable Long id){
+        service.inactivate(id);
+        return ResponseEntity.noContent().build();
     }
 }

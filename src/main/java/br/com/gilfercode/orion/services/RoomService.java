@@ -26,6 +26,14 @@ public class RoomService {
         return dto;
     }
 
+    @Transactional(readOnly = true)
+    public List<RoomDTO> findAllActiveByClinic(Long clinicId){
+        List<Room> rooms = repository.findByClinicAndActive(new Clinic(clinicId), true);
+        List<RoomDTO> dto = new ArrayList<>();
+        rooms.forEach(r -> dto.add(new RoomDTO(r)));
+        return dto;
+    }
+
     @Transactional
     public RoomDTO create(RoomDTO dto){
         Room room = new Room();
@@ -34,6 +42,7 @@ public class RoomService {
         room.setNumber(dto.getNumber());
         room.setStartAppointments(dto.getStartAppointments());
         room.setFinishAppointments(dto.getFinishAppointments());
+        room.setActive(true);
         Room entity = repository.save(room);
         return new RoomDTO(entity);
     }
@@ -47,5 +56,11 @@ public class RoomService {
         room.setFinishAppointments(dto.getFinishAppointments());
         Room entity = repository.save(room);
         return new RoomDTO(entity);
+    }
+
+    @Transactional
+    public void inactivate(Long id){
+        Room room = repository.getReferenceById(id);
+        room.setActive(false);
     }
 }

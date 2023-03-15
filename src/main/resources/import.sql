@@ -5,8 +5,8 @@ INSERT INTO TB_ADDRESS (state, city, district, street, number, complement, cep) 
 
 INSERT INTO TB_CLINIC (cnpj, name, address_id, active) VALUES ('49.387.859/0001-94', 'ceslab', 1, 1);
 
-INSERT INTO TB_ROOM (clinic_id, number, start_appointments, finish_appointments) VALUES (1, 1, '06:00:00', '17:00:00');
-INSERT INTO TB_ROOM (clinic_id, number, start_appointments, finish_appointments) VALUES (1, 2, '06:00:00', '17:00:00');
+INSERT INTO TB_ROOM (clinic_id, number, start_appointments, finish_appointments, active) VALUES (1, 1, '06:00:00', '17:00:00', 1);
+INSERT INTO TB_ROOM (clinic_id, number, start_appointments, finish_appointments, active) VALUES (1, 2, '06:00:00', '17:00:00', 1);
 
 INSERT INTO TB_ROLE (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO TB_ROLE (authority) VALUES ('ROLE_DOCTOR');

@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
     List<Room> findByClinic(Clinic clinic);
+    List<Room> findByClinicAndActive(Clinic clinic, boolean active);
 }
