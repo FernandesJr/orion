@@ -31,4 +31,10 @@ public class RoomResource {
                 path("/{id}").buildAndExpand(roomDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(roomDTO);
     }
+
+    @PutMapping
+    public ResponseEntity<RoomDTO> update(@RequestBody @Valid RoomDTO dto){
+        RoomDTO roomDTO = service.update(dto);
+        return ResponseEntity.ok(roomDTO);
+    }
 }

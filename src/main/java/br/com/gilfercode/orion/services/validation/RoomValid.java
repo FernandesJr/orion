@@ -8,10 +8,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = RoomInsertValidator.class)
+@Constraint(validatedBy = RoomValidator.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RoomInsertValid {
+public @interface RoomValid {
     String message() default "Validation error";
 
     Class<?>[] groups() default {};

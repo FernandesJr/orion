@@ -37,4 +37,15 @@ public class RoomService {
         Room entity = repository.save(room);
         return new RoomDTO(entity);
     }
+
+    @Transactional
+    public RoomDTO update(RoomDTO dto){
+        Room room = repository.getReferenceById(dto.getId());
+        room.setName(dto.getName());
+        room.setNumber(dto.getNumber());
+        room.setStartAppointments(dto.getStartAppointments());
+        room.setFinishAppointments(dto.getFinishAppointments());
+        Room entity = repository.save(room);
+        return new RoomDTO(entity);
+    }
 }

@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomInsertValidator implements ConstraintValidator<RoomInsertValid, RoomDTO> {
+public class RoomValidator implements ConstraintValidator<RoomValid, RoomDTO> {
 
     @Autowired
     private RoomRepository roomRepository;
@@ -28,7 +28,7 @@ public class RoomInsertValidator implements ConstraintValidator<RoomInsertValid,
     private ClinicRepository clinicRepository;
 
     @Override
-    public void initialize(RoomInsertValid constraintAnnotation) {
+    public void initialize(RoomValid constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
@@ -47,9 +47,9 @@ public class RoomInsertValidator implements ConstraintValidator<RoomInsertValid,
         List<Room> rooms = roomRepository.findByClinic(clinic);
 
         for (Room room: rooms) {
-            if(dto.getName().equals(room.getName()))
+            if(dto.getName().equals(room.getName()) && !room.getId().equals(dto.getId()))
                 error.add(new FieldMessage("name", "nome já existente em outra sala da clínica."));
-            if(dto.getNumber().equals(room.getNumber()))
+            if(dto.getNumber().equals(room.getNumber()) && !room.getId().equals(dto.getId()))
                 error.add(new FieldMessage("number", "número já existente em outra sala da clínica."));
         }
 

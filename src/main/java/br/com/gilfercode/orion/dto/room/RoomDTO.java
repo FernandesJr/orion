@@ -2,7 +2,7 @@ package br.com.gilfercode.orion.dto.room;
 
 import br.com.gilfercode.orion.dto.scheduling.SchedulingDTO;
 import br.com.gilfercode.orion.entities.Room;
-import br.com.gilfercode.orion.services.validation.RoomInsertValid;
+import br.com.gilfercode.orion.services.validation.RoomValid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.List;
 
-@RoomInsertValid
+@RoomValid
 public class RoomDTO implements Serializable {
 
     private Long id;
