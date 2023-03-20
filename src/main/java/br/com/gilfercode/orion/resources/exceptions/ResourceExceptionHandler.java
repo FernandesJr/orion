@@ -47,7 +47,7 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<StanderError> entityNotFound(BadRequestException e, HttpServletRequest request){
+    public ResponseEntity<StanderError> badRequest(BadRequestException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StanderError standerError = new StanderError();
         standerError.setStatus(status.value());
