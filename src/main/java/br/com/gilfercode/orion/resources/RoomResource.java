@@ -5,6 +5,7 @@ import br.com.gilfercode.orion.services.RoomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,6 +19,7 @@ public class RoomResource {
     @Autowired
     private RoomService service;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/clinic/{clinicId}")
     public ResponseEntity<List<RoomDTO>> findAllActiveByClinic(@PathVariable Long clinicId){
         List<RoomDTO> rooms = service.findAllActiveByClinic(clinicId);

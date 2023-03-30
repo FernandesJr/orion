@@ -5,6 +5,7 @@ import br.com.gilfercode.orion.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,6 +30,32 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(standerError);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<StanderError> badRequest(BadRequestException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StanderError standerError = new StanderError();
+        standerError.setStatus(status.value());
+        standerError.setTimestamp(Instant.now());
+        standerError.setError("Bad Request");
+        standerError.setMessage(e.getMessage());
+        standerError.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(standerError);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<StanderError> userNotFound(UsernameNotFoundException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        StanderError standerError = new StanderError();
+        standerError.setStatus(status.value());
+        standerError.setTimestamp(Instant.now());
+        standerError.setError("User not found");
+        standerError.setMessage(e.getMessage());
+        standerError.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(standerError);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class) //Get exception specific create or update of the user
     public ResponseEntity<ValidationError> validation(MethodArgumentNotValidException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY; //Significa que a entidade não pôde ser processada 422
@@ -44,18 +71,5 @@ public class ResourceExceptionHandler {
         }
 
         return ResponseEntity.status(status).body(error);
-    }
-
-    @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<StanderError> badRequest(BadRequestException e, HttpServletRequest request){
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-        StanderError standerError = new StanderError();
-        standerError.setStatus(status.value());
-        standerError.setTimestamp(Instant.now());
-        standerError.setError("Bad Request");
-        standerError.setMessage(e.getMessage());
-        standerError.setPath(request.getRequestURI());
-
-        return ResponseEntity.status(status).body(standerError);
     }
 }
