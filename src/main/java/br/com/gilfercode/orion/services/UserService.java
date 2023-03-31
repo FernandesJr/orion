@@ -42,6 +42,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Transactional(readOnly = true)
     public Page<UserDTO> findAllUser(Pageable pageable){
         Page<User> users = repository.findAll(pageable);
@@ -59,7 +62,7 @@ public class UserService implements UserDetailsService {
     public UserDTO insert(UserInsertDTO dto){
         User user = new User();
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setActive(true);
         user.getClinics().add(clinicRepository.getReferenceById(dto.getClinicId()));
         dto.getRoles().forEach(role -> user.addRole(roleRepository.getReferenceById(role.getId())));
@@ -73,7 +76,7 @@ public class UserService implements UserDetailsService {
         user.setEmail(dto.getEmail());
         user.setActive(dto.isActive());
         if(dto.getPassword() != PASSWORD_NOT_CHANGED)
-            user.setPassword(dto.getPassword());
+            user.setPassword(passwordEncoder.encode(dto.getPassword()));
         repository.save(user);
         return new UserDTO(user);
     }
