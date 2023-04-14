@@ -41,6 +41,10 @@ public class Room {
         this.clinic = clinic;
     }
 
+    public Room(Long id) {
+        this.id = id;
+    }
+
     /*Gets and Sets*/
     public Long getId() {
         return id;

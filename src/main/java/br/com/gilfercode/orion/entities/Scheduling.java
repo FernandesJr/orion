@@ -22,6 +22,8 @@ public class Scheduling {
     @ManyToOne
     private Room room;
 
+    private boolean completed;
+
     public Scheduling(){}
 
     public Scheduling(Long id, LocalDateTime start) {
@@ -60,6 +62,14 @@ public class Scheduling {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     /*Equals*/
